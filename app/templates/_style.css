@@ -1,0 +1,275 @@
+/*
+	Theme Name: <%= themeName %>
+	Theme URI:
+	Description:
+	Version:
+	Author:
+	Author URI:
+	Tags:
+
+	License:
+	License URI:
+*/
+
+
+
+
+
+/*============ Reset=============*/
+
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+     margin: 0;
+     padding: 0;
+     border: 0;
+     font-size: 100%;
+     font: inherit;
+     vertical-align: baseline;
+}
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+     display: block;
+}
+ol, ul {
+     list-style: none;
+}
+blockquote, q {
+     quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+     content: '';
+     content: none;
+}
+table {
+     border-collapse: collapse;
+     border-spacing: 0;
+}
+
+
+/*============ Global =============*/
+
+
+body{
+     font:100%/1.5em;
+     font-family: helvetica, arial, sans-serif;
+     color:#333;
+     -webkit-text-size-adjust:100%;
+     font-smoothing:antialiased;
+     text-rendering:optimizeLegibility;
+}
+
+a, a:visited{
+     color:#333;
+}
+a:hover{
+     color:#000;
+}
+a:focus{
+     outline:thin dotted;
+}
+a:hover, a:active{
+     outline:0;
+}
+
+
+/*clear*/
+
+
+.cf:before,
+.cf:after{
+    content:" ";
+    display:table;
+}
+.cf:after{
+    clear:both;
+}
+.cf{
+    *zoom:1;
+}
+
+
+ul, ol, dl{
+     margin:0 0 18px 20px;
+     padding:0;
+}
+ul{
+     margin:0;
+     list-style:none;
+}
+li{
+     margin:0 0 8px;
+     padding:0;
+}
+p.error, p.confirmation{
+     background:#ffd4d4;
+     border:1px solid #f1a4a4;
+     color:#472424;
+     margin:0 0 10px;
+     padding:5px 8px;
+     font-size:0.857em;
+     -moz-border-radius:3px;
+     -webit-border-radius:3px;
+     border-radius:3px;
+}
+p.confirmation{
+     background:#e6ffd2;
+     border:1px solid #afdd89;
+     color:#2e421e;
+     -moz-box-sizing:border-box;
+     -webkit-box-sizing:border-box;
+     box-sizing:border-box;
+}
+
+
+/*============ Forms =============*/
+
+
+form, input, button, select, textarea, label, legend, fieldset{
+     margin:0;
+     padding:0;
+}
+label{
+     display:block;
+     font-size:1em;
+     padding:0 0 6px;
+}
+input, textarea{
+     border:1px solid #e3e3e3;
+     height:28px;
+     line-height:2em;
+     -moz-border-radius:0;
+     -webkit-border-radius:0;
+     border-radius:0;
+     text-indent:5px;
+}
+input:focus{
+     border:1px solid #6aafdb;
+}
+input[type="submit"]{
+     background:#f3f3f3;
+     color:#333;
+     border:1px solid #e3e3e3;
+     font-size:0.786em;
+     text-transform:uppercase;
+     text-indent:0;
+     -webkit-appearance:none;
+}
+input[type="submit"]:hover{
+     background:#e3e3e3;
+}
+input[type="checkbox"], input[type="radio"]{
+     width:16px;
+     height:16px;
+     border:0;
+}
+textarea{
+     text-indent:0;
+     padding:5px;
+     line-height:1.5em;
+     overflow:auto;
+     vertical-align:top;
+     resize:vertical;
+}
+
+
+/*============ Typography =============*/
+
+
+p{
+     margin:0 0 1em 0;
+     line-height:1.5em;
+}
+h1, h2, h3, h4, h5, h6{
+     font-family:helvetica, arial, sans-serif;
+     font-weight:700;
+     color:#222;
+}
+h1{
+     font-size:1.857em;
+     margin:0 0 1em 0;
+}
+h2{
+     font-size:1.571em;
+     margin:0 0 1em 0;
+}
+h3{
+     font-size:1.286em;
+     margin:0 0 1em 0;
+}
+h4{
+     font-size:1.143em;
+     margin:0 0 1em 0;
+}
+h5{
+     font-size:1em;
+     margin:0 0 1em 0;
+}
+
+
+
+
+/*============ Pages =============*/
+
+
+
+
+
+
+/*============ Responsive =============*/
+
+
+@media (max-width:900px){
+
+
+}
+
+
+/*========= Print Styles ==========*/
+
+
+@media print {
+     body{
+          background:transparent;
+          color:#000;
+          text-shadow:none;
+     }
+     a, a:visited{
+          text-decoration:underline;
+     }
+     a[href]:after{
+          content: " (" attr(href) ")";
+     }
+     abbr[title]:after{
+          content: " (" attr(title) ")";
+     }
+     pre, blockquote{
+          border:1px solid #999;
+          page-break-inside:avoid;
+     }
+     tr, img{
+          page-break-inside:avoid;
+     }
+     img{
+          max-width:100%;
+     }
+     p, h2, h3 {
+          orphans:3;
+          widows:3;
+     }
+     h2, h3{
+          page-break-after:avoid;
+     }
+}
