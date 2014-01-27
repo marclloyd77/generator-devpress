@@ -85,16 +85,6 @@ DevpressGenerator.prototype.LatestWordpress = function LatestWordpress() {
     this.tarball('https://github.com/WordPress/WordPress/archive/master.tar.gz', './', cb)
 };
 
-MyGenerator.prototype.removeThemes = function removeThemes () {
-    var cb = this.async(),
-        self = this;
-
-    rimraf('wp-content/themes/' + this.themeName + '/*', function () {
-        self.log.info('Removing Themes');
-        cb();
-    });
-};
-
 DevpressGenerator.prototype.twentyfourteenTheme = function twentyfourteenTheme() {
 
     var cb   = this.async()

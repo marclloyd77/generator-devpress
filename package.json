@@ -1,6 +1,6 @@
 {
   "name": "generator-devpress",
-  "version": "0.1.1",
+  "version": "0.1.0",
   "description": "A Yeoman Wordpress generator including advanced custom fields, renaming of the twentyfourteen theme and grunt script for minimising CSS/JS and compressing images.",
   "keywords": [
     "yeoman-generator",
@@ -20,8 +20,7 @@
     "url": "git://github.com/marclloyd77/generator-devpress.git"
   },
   "dependencies": {
-    "yeoman-generator": "~0.14.0",
-    "rimraf": "~2.2.0"
+    "yeoman-generator": "~0.14.0"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
