@@ -99,7 +99,7 @@ DevpressGenerator.prototype.twentyfourteenTheme = function twentyfourteenTheme()
 
     var cb   = this.async()
         , self = this
-    this.log.writeln('Let\'s download the twentyfourteen Wordpress dev theme and rename it.')
+    this.log.writeln('Let\'s download the twentyfourteen Wordpress theme and rename it.')
     this.tarball('http://wordpress.org/themes/download/twentyfourteen.1.0.zip', 'wp-content/themes/' + this.themeName, cb)
 
 };
