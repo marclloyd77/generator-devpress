@@ -93,11 +93,11 @@ DevpressGenerator.prototype.removeThemes= function removeThemes() {
 
 };
 
-DevpressGenerator.prototype.twentyfourteenTheme = function twentyfourteenTheme() {
+DevpressGenerator.prototype.DevpressTheme = function DevpressTheme() {
     var cb   = this.async();
 
-    this.log.writeln('Let\'s download the twentyfourteen Wordpress theme and rename it.');
-    this.tarball('http://wordpress.org/themes/download/twentyfourteen.1.0.zip', 'wp-content/themes/' + this.themeName, cb);
+    this.log.writeln('Let\'s download the Devpress Wordpress theme and rename it.');
+    this.tarball('https://github.com/marclloyd77/devpress-theme/archive/master.zip', 'wp-content/themes/' + this.themeName, cb);
 
 };
 
