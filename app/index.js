@@ -1,12 +1,13 @@
 'use strict';
 
 //1) Copy package.json and Gruntfile.js to root folder
-//2) Download and unzip latest Wordpress version in to root
-//3) Delete preinstalled themes
-//3) Download Devpress theme, move to themes folder using theme name entered at prompt
-//4) Download Advanced Custom Fields and move to plugins folder
-//5) Move wp-config file to root and update with DB details entered
-//6) Move reset stylsheet to theme folder and update theme name (Using a separate reset file to the downloaded one so that we can update the theme name)
+//2) Create Database
+//3) Download and unzip latest Wordpress version in to root
+//4) Delete preinstalled themes
+//5) Download Devpress theme, move to themes folder using theme name entered at prompt
+//6) Download Advanced Custom Fields and move to plugins folder
+//7) Move wp-config file to root and update with DB details entered
+//8) Move reset stylsheet to theme folder and update theme name (Using a separate reset file to the downloaded one so that we can update the theme name)
 
 
 var util = require('util'),
@@ -34,6 +35,33 @@ DevpressGenerator.prototype.askFor = function askFor() {
   console.log(this.yeoman);
 
   var prompts = [
+      {
+          type: 'input',
+          name: 'siteTitle',
+          message: 'Please enter the sites name/title',
+      },
+      {
+          type: 'input',
+          name: 'siteURL',
+          message: 'The Site URL',
+      },
+      {
+          type: 'input',
+          name: 'adminUser',
+          message: 'The wordpress admin username (Will be used to login to Wordpress)',
+          default: 'admin'
+      },
+      {
+          type: 'input',
+          name: 'adminPassword',
+          message: 'The wordpress admin password (Will be used to login to Wordpress)',
+          default: 'access1234'
+      },
+      {
+          type: 'input',
+          name: 'adminEmail',
+          message: 'The wordpress admin users email address',
+      },
     {
         type: 'input',
         name: 'dbName',
@@ -60,6 +88,12 @@ DevpressGenerator.prototype.askFor = function askFor() {
   ];
 
     this.prompt(prompts, function (props) {
+        this.siteTitle = props.siteTitle;
+        this.siteURL = props.siteURL;
+        this.adminUser = props.adminUser;
+        this.adminPassword = props.adminPassword;
+        this.adminEmail = props.adminEmail;
+
         this.dbName = props.dbName;
         this.dbUser = props.dbUser;
         this.dbPass = props.dbPass;
@@ -82,13 +116,13 @@ DevpressGenerator.prototype.gruntFiles = function gruntFiles() {
 DevpressGenerator.prototype.LatestWordpress = function LatestWordpress() {
     var cb   = this.async();
 
-    this.log.writeln('Let\'s download the latest Wordpress Version.');
+    this.log.writeln('\n*************************************************\n** Downloading the latest Version of Wordpress **\n*************************************************');
     this.tarball('http://wordpress.org/latest.zip', './', cb);
 };
 
 DevpressGenerator.prototype.removeThemes= function removeThemes() {
 
-    this.log.writeln('Let\'s delete the default Wordpress themes.');
+    this.log.writeln('\n*******************************************\n** Deleting the default Wordpress themes **\n*******************************************');
 
     shell.rm('-rf', './wp-content/themes/*');
 
@@ -97,7 +131,7 @@ DevpressGenerator.prototype.removeThemes= function removeThemes() {
 DevpressGenerator.prototype.DevpressTheme = function DevpressTheme() {
     var cb   = this.async();
 
-    this.log.writeln('Let\'s download the Devpress Wordpress theme and rename it.');
+    this.log.writeln('\n************************************************************\n** Downloading the Devpress Wordpress theme and rename it **\n************************************************************');
     this.tarball('https://github.com/marclloyd77/devpress-theme/archive/master.zip', 'wp-content/themes/' + this.themeName, cb);
 
 };
@@ -105,17 +139,33 @@ DevpressGenerator.prototype.DevpressTheme = function DevpressTheme() {
 DevpressGenerator.prototype.acfWordpress = function acfWordpress() {
     var cb   = this.async();
 
-    this.log.writeln('Now we\'ll download the latest advanced custom fields and add it to the plugins folder.');
+    this.log.writeln('\n************************************************************************************\n** Downloading the latest advanced custom fields and add it to the plugins folder **\n************************************************************************************');
     this.tarball('https://github.com/elliotcondon/acf/archive/master.tar.gz', 'wp-content/plugins/advanced-custom-fields', cb);
 };
 
 DevpressGenerator.prototype.updateWpConfig = function updateWpConfig() {
     shell.rm('-rf', './wp-config.php');
+    this.log.writeln('\n*********************************\n** Updating the wp-config file **\n*********************************');
     this.copy('wp-config.php.tmpl', 'wp-config.php');
 };
 
 //move css template and update theme name
 DevpressGenerator.prototype.moveCss = function moveCss() {
     shell.rm('-rf', './wp-content/themes/' + this.themeName + '/style.css');
+    this.log.writeln('\n************************************\n** Adding theme name to style.css **\n************************************');
     this.copy('_style.css', 'wp-content/themes/' + this.themeName + '/style.css');
+};
+
+//Create database
+DevpressGenerator.prototype.CreateDatabase = function CreateDatabase() {
+
+    this.log.writeln('\n***********************\n** Creating database **\n***********************');
+    shell.exec('mysql --user="' + this.dbUser + '" --password="' + this.dbPass + '" -e "create database ' + this.dbName + '"');
+};
+
+//Create database
+DevpressGenerator.prototype.InstallWordpress = function InstallWordpress() {
+
+    this.log.writeln('\n**************************\n** Installing Wordpress **\n**************************');
+    shell.exec('curl -d "weblog_title=' + this.siteTitle + '&user_name=' + this.adminUser + '&admin_password=' + this.adminPassword + '&admin_password2=' + this.adminPassword + '&admin_email=' + this.adminEmail + '" http://test.test.marc.ordev.co.uk/wp-admin/install.php?step=2')
 };
