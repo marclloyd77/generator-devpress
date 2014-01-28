@@ -11,6 +11,7 @@
 var util = require('util');
 var path = require('path');
 var yeoman = require('yeoman-generator');
+var shell = require('shelljs');
 
 
 var DevpressGenerator = module.exports = function DevpressGenerator(args, options, config) {
@@ -82,7 +83,15 @@ DevpressGenerator.prototype.LatestWordpress = function LatestWordpress() {
         , self = this
 
     this.log.writeln('Let\'s download the latest Wordpress Version.')
-    this.tarball('https://github.com/WordPress/WordPress/archive/master.tar.gz', './', cb)
+    this.tarball('http://wordpress.org/latest.zip', './', cb)
+};
+
+DevpressGenerator.prototype.removeThemes= function removeThemes() {
+
+    this.log.writeln('Let\'s delete the default Wordpress themes.');
+
+    shell.rm('-rf', './wp-content/themes/*')
+
 };
 
 DevpressGenerator.prototype.twentyfourteenTheme = function twentyfourteenTheme() {
@@ -108,10 +117,5 @@ DevpressGenerator.prototype.updateWpConfig = function updateWpConfig() {
 
 //move css template and update theme name
 DevpressGenerator.prototype.moveCss = function moveCss() {
-    this.copy('_style.css', 'wp-content/themes/' + this.themeName + '/style.css');
-};
-
-//remove default themes
-DevpressGenerator.prototype.removeThemes = function moveCss() {
     this.copy('_style.css', 'wp-content/themes/' + this.themeName + '/style.css');
 };

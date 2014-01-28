@@ -20,7 +20,8 @@
     "url": "git://github.com/marclloyd77/generator-devpress.git"
   },
   "dependencies": {
-    "yeoman-generator": "~0.14.0"
+    "yeoman-generator": "~0.14.0",
+    "shell": "~0.3.2"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
