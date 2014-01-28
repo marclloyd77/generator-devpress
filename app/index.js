@@ -8,10 +8,10 @@
 //6) Move reset stylsheet to theme folder and update theme name (Using a separate reset file to the downloaded one so that we can update the theme name)
 
 
-var util = require('util');
-var path = require('path');
-var yeoman = require('yeoman-generator');
-var shell = require('shelljs');
+var util = require('util'),
+    path = require('path'),
+    yeoman = require('yeoman-generator'),
+    shell = require('shelljs');
 
 
 var DevpressGenerator = module.exports = function DevpressGenerator(args, options, config) {
@@ -79,43 +79,42 @@ DevpressGenerator.prototype.gruntFiles = function gruntFiles() {
 };
 
 DevpressGenerator.prototype.LatestWordpress = function LatestWordpress() {
-    var cb   = this.async()
-        , self = this
+    var cb   = this.async();
 
-    this.log.writeln('Let\'s download the latest Wordpress Version.')
-    this.tarball('http://wordpress.org/latest.zip', './', cb)
+    this.log.writeln('Let\'s download the latest Wordpress Version.');
+    this.tarball('http://wordpress.org/latest.zip', './', cb);
 };
 
 DevpressGenerator.prototype.removeThemes= function removeThemes() {
 
     this.log.writeln('Let\'s delete the default Wordpress themes.');
 
-    shell.rm('-rf', './wp-content/themes/*')
+    shell.rm('-rf', './wp-content/themes/*');
 
 };
 
 DevpressGenerator.prototype.twentyfourteenTheme = function twentyfourteenTheme() {
+    var cb   = this.async();
 
-    var cb   = this.async()
-        , self = this
-    this.log.writeln('Let\'s download the twentyfourteen Wordpress theme and rename it.')
-    this.tarball('http://wordpress.org/themes/download/twentyfourteen.1.0.zip', 'wp-content/themes/' + this.themeName, cb)
+    this.log.writeln('Let\'s download the twentyfourteen Wordpress theme and rename it.');
+    this.tarball('http://wordpress.org/themes/download/twentyfourteen.1.0.zip', 'wp-content/themes/' + this.themeName, cb);
 
 };
 
 DevpressGenerator.prototype.acfWordpress = function acfWordpress() {
-    var cb   = this.async()
-        , self = this
+    var cb   = this.async();
 
-    this.log.writeln('Now we\'ll download the latest advanced custom fields and add it to the plugins folder.')
-    this.tarball('https://github.com/elliotcondon/acf/archive/master.tar.gz', 'wp-content/plugins/advanced-custom-fields', cb)
+    this.log.writeln('Now we\'ll download the latest advanced custom fields and add it to the plugins folder.');
+    this.tarball('https://github.com/elliotcondon/acf/archive/master.tar.gz', 'wp-content/plugins/advanced-custom-fields', cb);
 };
 
 DevpressGenerator.prototype.updateWpConfig = function updateWpConfig() {
+    shell.rm('-rf', './wp-config.php');
     this.copy('wp-config.php.tmpl', 'wp-config.php');
 };
 
 //move css template and update theme name
 DevpressGenerator.prototype.moveCss = function moveCss() {
+    shell.rm('-rf', './wp-content/themes/' + this.themeName + '/style.css');
     this.copy('_style.css', 'wp-content/themes/' + this.themeName + '/style.css');
 };
