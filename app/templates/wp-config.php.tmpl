@@ -1,7 +1,7 @@
 <?php
 
 /** Environment Detection */
-if (preg_match('/client\.projectname\.((?!stage).*)\.ordev\.co\.uk/', $_SERVER['HTTP_HOST'])) {
+if (preg_match('/client\.projectname\.((?!stage).*)\.mysite\.co\.uk/', $_SERVER['HTTP_HOST'])) {
     /** Development Environment Detected */
     $dbhost = 'localhost';
     $dbname = '<%= dbName %>';
@@ -11,7 +11,7 @@ if (preg_match('/client\.projectname\.((?!stage).*)\.ordev\.co\.uk/', $_SERVER['
     /** Google Maps API Key **/
     define('GOOGLE_MAPS_API_KEY', 'enter-here');
 
-} elseif (preg_match('/client\.projectname\.stage\.ordev\.co\.uk/', $_SERVER['HTTP_HOST'])) {
+} elseif (preg_match('/client\.projectname\.staging\.mysite\.co\.uk/', $_SERVER['HTTP_HOST'])) {
     /** Staging Environment Detected */
     $dbhost = 'localhost';
     $dbname = '';
