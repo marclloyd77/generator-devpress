@@ -1,7 +1,8 @@
-# generator-devpress [![Build Status](https://secure.travis-ci.org/marclloyd77/generator-devpress.png?branch=master)](https://travis-ci.org/marclloyd77/generator-devpress)
+# generator-devpress
 
 A generator for [Yeoman](http://yeoman.io).
 
+A Yeoman generator for Wordpress including the download and install of advanced custom fields, install of the stripped back Devpress theme and grunt script for minimising CSS/JS and compressing images.
 
 ## Getting Started
 
