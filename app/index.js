@@ -11,7 +11,7 @@
 var util = require('util');
 var path = require('path');
 var yeoman = require('yeoman-generator');
-var shell = require('shelljs');
+var shell = require('shell');
 
 
 var DevpressGenerator = module.exports = function DevpressGenerator(args, options, config) {
