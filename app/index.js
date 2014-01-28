@@ -2,7 +2,8 @@
 
 //1) Copy package.json and Gruntfile.js to root folder
 //2) Download and unzip latest Wordpress version in to root
-//3) Download html5blank theme and move to themes folder using theme name entered
+//3) Delete preinstalled themes
+//3) Download Devpress theme, move to themes folder using theme name entered at prompt
 //4) Download Advanced Custom Fields and move to plugins folder
 //5) Move wp-config file to root and update with DB details entered
 //6) Move reset stylsheet to theme folder and update theme name (Using a separate reset file to the downloaded one so that we can update the theme name)
