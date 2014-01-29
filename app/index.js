@@ -63,6 +63,25 @@ DevpressGenerator.prototype.askFor = function askFor() {
             message: 'The wordpress admin users email address'
         },
         {
+            type: 'confirm',
+            name: 'installDevpressTheme',
+            message: 'Would you like to install the Devpress base theme? Not installing this will set your grunt file up using the twentyfourteen theme'
+        },
+        {
+            when: function (response) {
+                return response.installDevpressTheme;
+            },
+            type: 'input',
+            name: 'themeName',
+            message: 'Enter a name for your theme',
+            default: ''
+        },
+        {
+            type: 'confirm',
+            name: 'installAcf',
+            message: 'Would you like to install the Advanced Custom Fields plugin?'
+        },
+        {
             type: 'input',
             name: 'dbName',
             message: 'Database Name'
@@ -78,12 +97,6 @@ DevpressGenerator.prototype.askFor = function askFor() {
             name: 'dbPass',
             message: 'Database Password',
             default: 'root'
-        },
-        {
-            type: 'input',
-            name: 'themeName',
-            message: 'Enter a name for your theme (The default twentyfourteen theme will be downloaded and renamed)',
-            default: ''
         }
     ];
 
@@ -93,6 +106,10 @@ DevpressGenerator.prototype.askFor = function askFor() {
         this.adminUser = props.adminUser;
         this.adminPassword = props.adminPassword;
         this.adminEmail = props.adminEmail;
+        this.installAcf = props.installAcf;
+
+
+        this.installDevpressTheme = props.installDevpressTheme;
         this.dbName = props.dbName;
         this.dbUser = props.dbUser;
         this.dbPass = props.dbPass;
@@ -118,27 +135,36 @@ DevpressGenerator.prototype.LatestWordpress = function LatestWordpress() {
     this.tarball('http://wordpress.org/latest.zip', './', cb);
 };
 
+
 DevpressGenerator.prototype.removeThemes= function removeThemes() {
 
-    this.log.writeln('\n*******************************************\n** Deleting the default Wordpress themes **\n*******************************************');
+    if( this.installDevpressTheme ){
+        this.log.writeln('\n*******************************************\n** Deleting the default Wordpress themes **\n*******************************************');
 
-    shell.rm('-rf', './wp-content/themes/*');
+        shell.rm('-rf', './wp-content/themes/*');
+    }
 
 };
 
 DevpressGenerator.prototype.DevpressTheme = function DevpressTheme() {
-    var cb   = this.async();
 
-    this.log.writeln('\n************************************************************\n** Downloading the Devpress Wordpress theme and rename it **\n************************************************************');
-    this.tarball('https://github.com/marclloyd77/devpress-theme/archive/master.zip', 'wp-content/themes/' + this.themeName, cb);
+    if( this.installDevpressTheme ){
+        var cb   = this.async();
+
+        this.log.writeln('\n************************************************************\n** Downloading the Devpress Wordpress theme and rename it **\n************************************************************');
+        this.tarball('https://github.com/marclloyd77/devpress-theme/archive/master.zip', 'wp-content/themes/' + this.themeName, cb);
+    }
 
 };
 
 DevpressGenerator.prototype.acfWordpress = function acfWordpress() {
-    var cb   = this.async();
 
-    this.log.writeln('\n************************************************************************************\n** Downloading the latest advanced custom fields and add it to the plugins folder **\n************************************************************************************');
-    this.tarball('https://github.com/elliotcondon/acf/archive/master.tar.gz', 'wp-content/plugins/advanced-custom-fields', cb);
+    if( this.installAcf ){
+        var cb   = this.async();
+
+        this.log.writeln('\n************************************************************************************\n** Downloading the latest advanced custom fields and add it to the plugins folder **\n************************************************************************************');
+        this.tarball('https://github.com/elliotcondon/acf/archive/master.tar.gz', 'wp-content/plugins/advanced-custom-fields', cb);
+    }
 };
 
 DevpressGenerator.prototype.updateWpConfig = function updateWpConfig() {
@@ -161,7 +187,7 @@ DevpressGenerator.prototype.CreateDatabase = function CreateDatabase() {
     shell.exec('mysql --user="' + this.dbUser + '" --password="' + this.dbPass + '" -e "create database ' + this.dbName + '"');
 };
 
-//Create database
+//Install Wordpress
 DevpressGenerator.prototype.InstallWordpress = function InstallWordpress() {
 
     this.log.writeln('\n**************************\n** Installing Wordpress **\n**************************');
