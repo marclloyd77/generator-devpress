@@ -17,75 +17,75 @@ var util = require('util'),
 
 
 var DevpressGenerator = module.exports = function DevpressGenerator(args, options, config) {
-  yeoman.generators.Base.apply(this, arguments);
+    yeoman.generators.Base.apply(this, arguments);
 
-  this.on('end', function () {
-    this.installDependencies({ skipInstall: options['skip-install'] });
-  });
+    this.on('end', function () {
+        this.installDependencies({ skipInstall: options['skip-install'] });
+    });
 
-  this.pkg = JSON.parse(this.readFileAsString(path.join(__dirname, '../package.json')));
+    this.pkg = JSON.parse(this.readFileAsString(path.join(__dirname, '../package.json')));
 };
 
 util.inherits(DevpressGenerator, yeoman.generators.Base);
 
 DevpressGenerator.prototype.askFor = function askFor() {
-  var cb = this.async();
+    var cb = this.async();
 
-  // have Yeoman greet the user.
-  console.log(this.yeoman);
+    // have Yeoman greet the user.
+    console.log(this.yeoman);
 
-  var prompts = [
-      {
-          type: 'input',
-          name: 'siteTitle',
-          message: 'Please enter the sites name/title'
-      },
-      {
-          type: 'input',
-          name: 'siteURL',
-          message: 'The Site URL (e.g. 127.0.0.1/devpress or mylocalsite.co.uk)'
-      },
-      {
-          type: 'input',
-          name: 'adminUser',
-          message: 'The wordpress admin username (Will be used to login to Wordpress)',
-          default: 'admin'
-      },
-      {
-          type: 'input',
-          name: 'adminPassword',
-          message: 'The wordpress admin password (Will be used to login to Wordpress)',
-          default: 'access1234'
-      },
-      {
-          type: 'input',
-          name: 'adminEmail',
-          message: 'The wordpress admin users email address'
-      },
-    {
-        type: 'input',
-        name: 'dbName',
-        message: 'Database Name'
-    },
-    {
-        type: 'input',
-        name: 'dbUser',
-        message: 'Database Username',
-        default: 'root'
-    },
-    {
-        type: 'input',
-        name: 'dbPass',
-        message: 'Database Password',
-        default: 'root'
-    },
-      {
-          type: 'input',
-          name: 'themeName',
-          message: 'Enter a name for your theme (The default twentyfourteen theme will be downloaded and renamed)',
-          default: ''
-      }
-  ];
+    var prompts = [
+        {
+            type: 'input',
+            name: 'siteTitle',
+            message: 'Please enter the sites name/title'
+        },
+        {
+            type: 'input',
+            name: 'siteURL',
+            message: 'The Site URL (e.g. 127.0.0.1/devpress or mylocalsite.co.uk)'
+        },
+        {
+            type: 'input',
+            name: 'adminUser',
+            message: 'The wordpress admin username (Will be used to login to Wordpress)',
+            default: 'admin'
+        },
+        {
+            type: 'input',
+            name: 'adminPassword',
+            message: 'The wordpress admin password (Will be used to login to Wordpress)',
+            default: 'access1234'
+        },
+        {
+            type: 'input',
+            name: 'adminEmail',
+            message: 'The wordpress admin users email address'
+        },
+        {
+            type: 'input',
+            name: 'dbName',
+            message: 'Database Name'
+        },
+        {
+            type: 'input',
+            name: 'dbUser',
+            message: 'Database Username',
+            default: 'root'
+        },
+        {
+            type: 'input',
+            name: 'dbPass',
+            message: 'Database Password',
+            default: 'root'
+        },
+        {
+            type: 'input',
+            name: 'themeName',
+            message: 'Enter a name for your theme (The default twentyfourteen theme will be downloaded and renamed)',
+            default: ''
+        }
+    ];
 
     this.prompt(prompts, function (props) {
         this.siteTitle = props.siteTitle;
@@ -102,8 +102,8 @@ DevpressGenerator.prototype.askFor = function askFor() {
             this.themeName = 'twentyfourteen';
         }
 
-    cb();
-  }.bind(this));
+        cb();
+    }.bind(this));
 };
 
 DevpressGenerator.prototype.gruntFiles = function gruntFiles() {
