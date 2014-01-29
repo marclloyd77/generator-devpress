@@ -13,7 +13,7 @@ This generator will:
 * Download Devpress theme, move to themes folder using entered theme name
 * Download Advanced Custom Fields and move to plugins folder
 * Move wp-config file to root and update DB details. wp-config also includes environment detection
-* Move reset stylsheet to theme folder and update theme name
+* Move reset stylesheet to theme folder and update theme name
 * Set current theme in Database
 
 ## Getting Started
