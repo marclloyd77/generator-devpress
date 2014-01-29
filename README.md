@@ -6,14 +6,14 @@ A Yeoman generator for Wordpress including automatic database setup, the downloa
 
 This generator will:
 
-1) Copy package.json and Gruntfile.js to root folder
-2) Create Database
-3) Download and unzip latest Wordpress version into root
-4) Delete preinstalled themes
-5) Download Devpress theme, move to themes folder using entered theme name
-6) Download Advanced Custom Fields and move to plugins folder
-7) Move wp-config file to root and update DB details. wp-config also includes environment detection
-8) Move reset stylsheet to theme folder and update theme name
+1) Copy package.json and Gruntfile.js to root folder\n
+2) Create Database\n
+3) Download and unzip latest Wordpress version into root\n
+4) Delete preinstalled themes\n
+5) Download Devpress theme, move to themes folder using entered theme name\n
+6) Download Advanced Custom Fields and move to plugins folder\n
+7) Move wp-config file to root and update DB details. wp-config also includes environment detection\n
+8) Move reset stylsheet to theme folder and update theme name\n
 9) Set current theme in Database
 
 ## Getting Started
