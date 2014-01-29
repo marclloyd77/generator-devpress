@@ -4,6 +4,18 @@ A generator for [Yeoman](http://yeoman.io).
 
 A Yeoman generator for Wordpress including automatic database setup, the download and install of advanced custom fields, install of the stripped back Devpress theme and grunt script for minimising CSS/JS and compressing images.
 
+This generator will:
+
+1) Copy package.json and Gruntfile.js to root folder
+2) Create Database
+3) Download and unzip latest Wordpress version into root
+4) Delete preinstalled themes
+5) Download Devpress theme, move to themes folder using entered theme name
+6) Download Advanced Custom Fields and move to plugins folder
+7) Move wp-config file to root and update DB details. wp-config also includes environment detection
+8) Move reset stylsheet to theme folder and update theme name
+9) Set current theme in Database
+
 ## Getting Started
 
 ### What is Yeoman?
