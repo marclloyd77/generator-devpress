@@ -38,12 +38,12 @@ DevpressGenerator.prototype.askFor = function askFor() {
       {
           type: 'input',
           name: 'siteTitle',
-          message: 'Please enter the sites name/title',
+          message: 'Please enter the sites name/title'
       },
       {
           type: 'input',
           name: 'siteURL',
-          message: 'The Site URL',
+          message: 'The Site URL (e.g. 127.0.0.1/devpress or mylocalsite.co.uk)'
       },
       {
           type: 'input',
@@ -60,12 +60,12 @@ DevpressGenerator.prototype.askFor = function askFor() {
       {
           type: 'input',
           name: 'adminEmail',
-          message: 'The wordpress admin users email address',
+          message: 'The wordpress admin users email address'
       },
     {
         type: 'input',
         name: 'dbName',
-        message: 'Database Name',
+        message: 'Database Name'
     },
     {
         type: 'input',
@@ -167,5 +167,16 @@ DevpressGenerator.prototype.CreateDatabase = function CreateDatabase() {
 DevpressGenerator.prototype.InstallWordpress = function InstallWordpress() {
 
     this.log.writeln('\n**************************\n** Installing Wordpress **\n**************************');
-    shell.exec('curl -d "weblog_title=' + this.siteTitle + '&user_name=' + this.adminUser + '&admin_password=' + this.adminPassword + '&admin_password2=' + this.adminPassword + '&admin_email=' + this.adminEmail + '" http://test.test.marc.ordev.co.uk/wp-admin/install.php?step=2')
+    shell.exec('curl -d "weblog_title=' + this.siteTitle + '&user_name=' + this.adminUser + '&admin_password=' + this.adminPassword + '&admin_password2=' + this.adminPassword + '&admin_email=' + this.adminEmail + '" http://' + this.siteURL + '/wp-admin/install.php?step=2')
+};
+
+//Update theme in database
+DevpressGenerator.prototype.UpdateThemeInDb = function UpdateThemeInDb() {
+
+    this.log.writeln('\n********************************\n** Updating Theme in Database **\n********************************');
+
+    shell.exec('mysql --user="root" --password="root" -D yotest -e "UPDATE wp_options SET option_value = \'yotest\' WHERE option_name = \'template\'"');
+    shell.exec('mysql --user="root" --password="root" -D yotest -e "UPDATE wp_options SET option_value = \'yotest\' WHERE option_name = \'stylesheet\'"');
+    shell.exec('mysql --user="root" --password="root" -D yotest -e "UPDATE wp_options SET option_value = \'yotest\' WHERE option_name = \'current_theme\'"');
+
 };
