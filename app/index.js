@@ -2,13 +2,13 @@
 
 //1) Copy package.json and Gruntfile.js to root folder
 //2) Create Database
-//3) Download and unzip latest Wordpress version in to root
+//3) Download and unzip latest Wordpress version into root
 //4) Delete preinstalled themes
-//5) Download Devpress theme, move to themes folder using theme name entered at prompt
+//5) Download Devpress theme, move to themes folder using entered theme name
 //6) Download Advanced Custom Fields and move to plugins folder
-//7) Move wp-config file to root and update with DB details entered
-//8) Move reset stylsheet to theme folder and update theme name (Using a separate reset file to the downloaded one so that we can update the theme name)
-
+//7) Move wp-config file to root and update DB details. wp-config also includes environment detection
+//8) Move reset stylsheet to theme folder and update theme name
+//9) Set current theme in Database
 
 var util = require('util'),
     path = require('path'),
@@ -93,11 +93,9 @@ DevpressGenerator.prototype.askFor = function askFor() {
         this.adminUser = props.adminUser;
         this.adminPassword = props.adminPassword;
         this.adminEmail = props.adminEmail;
-
         this.dbName = props.dbName;
         this.dbUser = props.dbUser;
         this.dbPass = props.dbPass;
-        this.installTheme = props.installTheme;
         this.themeName = props.themeName;
 
         if(!this.themeName){
@@ -175,8 +173,8 @@ DevpressGenerator.prototype.UpdateThemeInDb = function UpdateThemeInDb() {
 
     this.log.writeln('\n********************************\n** Updating Theme in Database **\n********************************');
 
-    shell.exec('mysql --user="root" --password="root" -D yotest -e "UPDATE wp_options SET option_value = \'yotest\' WHERE option_name = \'template\'"');
-    shell.exec('mysql --user="root" --password="root" -D yotest -e "UPDATE wp_options SET option_value = \'yotest\' WHERE option_name = \'stylesheet\'"');
-    shell.exec('mysql --user="root" --password="root" -D yotest -e "UPDATE wp_options SET option_value = \'yotest\' WHERE option_name = \'current_theme\'"');
+    shell.exec('mysql --user="root" --password="root" -D ' + this.dbName + ' -e "UPDATE wp_options SET option_value = \'' + this.themeName + '\' WHERE option_name = \'template\'"');
+    shell.exec('mysql --user="root" --password="root" -D ' + this.dbName + ' -e "UPDATE wp_options SET option_value = \'' + this.themeName + '\' WHERE option_name = \'stylesheet\'"');
+    shell.exec('mysql --user="root" --password="root" -D ' + this.dbName + ' -e "UPDATE wp_options SET option_value = \'' + this.themeName + '\' WHERE option_name = \'current_theme\'"');
 
 };

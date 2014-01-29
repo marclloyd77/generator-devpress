@@ -1,7 +1,7 @@
 {
   "name": "generator-devpress",
   "version": "0.1.0",
-  "description": "A Yeoman generator for Wordpress including automatic database setup, the download and install of advanced custom fields, install of the stripped back Devpress theme and grunt script for minimising CSS/JS and compressing images.",
+  "description": "A Yeoman generator for Wordpress including automatic database setup, the download and install of advanced custom fields, install of the stripped back Devpress theme and grunt script for minimising CSS/JS and compressing images. \n This generator will: \n 1) Copy package.json and Gruntfile.js to root folder \n 2) Create Database \n 3) Download and unzip latest Wordpress version into root \n 4) Delete preinstalled themes \n 5) Download Devpress theme, move to themes folder using entered theme name \n 6) Download Advanced Custom Fields and move to plugins folder \n 7) Move wp-config file to root and update DB details. wp-config also includes environment detection \n 8) Move reset stylsheet to theme folder and update theme name \n 9) Set current theme in Database",
   "keywords": [
     "yeoman-generator",
     "wordpress-generator",
