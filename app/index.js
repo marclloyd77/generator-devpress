@@ -173,8 +173,8 @@ DevpressGenerator.prototype.UpdateThemeInDb = function UpdateThemeInDb() {
 
     this.log.writeln('\n********************************\n** Updating Theme in Database **\n********************************');
 
-    shell.exec('mysql --user="root" --password="root" -D ' + this.dbName + ' -e "UPDATE wp_options SET option_value = \'' + this.themeName + '\' WHERE option_name = \'template\'"');
-    shell.exec('mysql --user="root" --password="root" -D ' + this.dbName + ' -e "UPDATE wp_options SET option_value = \'' + this.themeName + '\' WHERE option_name = \'stylesheet\'"');
-    shell.exec('mysql --user="root" --password="root" -D ' + this.dbName + ' -e "UPDATE wp_options SET option_value = \'' + this.themeName + '\' WHERE option_name = \'current_theme\'"');
+    shell.exec('mysql --user="' + this.dbUser + '" --password="' + this.dbPass + '" -D ' + this.dbName + ' -e "UPDATE wp_options SET option_value = \'' + this.themeName + '\' WHERE option_name = \'template\'"');
+    shell.exec('mysql --user="' + this.dbUser + '" --password="' + this.dbPass + '" -D ' + this.dbName + ' -e "UPDATE wp_options SET option_value = \'' + this.themeName + '\' WHERE option_name = \'stylesheet\'"');
+    shell.exec('mysql --user="' + this.dbUser + '" --password="' + this.dbPass + '" -D ' + this.dbName + ' -e "UPDATE wp_options SET option_value = \'' + this.themeName + '\' WHERE option_name = \'current_theme\'"');
 
 };
