@@ -1,6 +1,6 @@
 {
   "name": "devpress",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A Yeoman generator for Wordpress including automatic database setup, the download and install of advanced custom fields, install of the stripped back Devpress theme and grunt script for minimising CSS/JS and compressing images.",
   "keywords": [
     "yeoman-generator",

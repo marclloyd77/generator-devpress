@@ -3,9 +3,9 @@
 //1) Copy package.json and Gruntfile.js to root folder
 //2) Create Database
 //3) Download and unzip latest Wordpress version into root
-//4) Delete preinstalled themes
-//5) Download Devpress theme, move to themes folder using entered theme name
-//6) Download Advanced Custom Fields and move to plugins folder
+//4) Delete preinstalled themes if adding a third part theme
+//5) Download / install a third party theme theme and rename as specified
+//6) Download Advanced Custom Fields and move to plugins folder if requested
 //7) Move wp-config file to root and update DB details. wp-config also includes environment detection
 //8) Move reset stylsheet to theme folder and update theme name
 //9) Set current theme in Database
@@ -63,9 +63,9 @@ DevpressGenerator.prototype.askFor = function askFor() {
             message: 'The wordpress admin users email address'
         },
         {
-            type: 'confirm',
+            type: 'input',
             name: 'installDevpressTheme',
-            message: 'Would you like to install the Devpress base theme? Not installing this will set your grunt file up using the twentyfourteen theme'
+            message: 'To install a third party theme, enter it\'s download URL. (Leave blank to continue without). Not installing another theme will set your grunt file up using the twentyfourteen theme'
         },
         {
             when: function (response) {
@@ -116,7 +116,7 @@ DevpressGenerator.prototype.askFor = function askFor() {
         this.themeName = props.themeName;
 
         if(!this.themeName){
-            this.themeName = 'twentyfourteen';
+            this.themeName = this.siteTitle.toLowerCase().replace(/ /g, '-');
         }
 
         cb();
@@ -151,8 +151,8 @@ DevpressGenerator.prototype.DevpressTheme = function DevpressTheme() {
     if( this.installDevpressTheme ){
         var cb   = this.async();
 
-        this.log.writeln('\n************************************************************\n** Downloading the Devpress Wordpress theme and rename it **\n************************************************************');
-        this.tarball('https://github.com/marclloyd77/devpress-theme/archive/master.zip', 'wp-content/themes/' + this.themeName, cb);
+        this.log.writeln('\n*********************************************************************\n** Downloading and installing your theme **\n********************************************************************');
+        this.tarball(this.installDevpressTheme, 'wp-content/themes/' + this.themeName, cb);
     }
 
 };
