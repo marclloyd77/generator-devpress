@@ -153,6 +153,11 @@ DevpressGenerator.prototype.DevpressTheme = function DevpressTheme() {
 
         this.log.writeln('\n*********************************************************************\n** Downloading and installing your theme **\n********************************************************************');
         this.tarball(this.installDevpressTheme, 'wp-content/themes/' + this.themeName, cb);
+    }else{
+        var cb   = this.async();
+
+        this.log.writeln('\n*********************************************************************\n** Downloading and installing your theme **\n********************************************************************');
+        this.tarball('https://wordpress.org/themes/download/twentyfourteen.1.0.zip', 'wp-content/themes/' + this.themeName, cb);
     }
 
 };
