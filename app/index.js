@@ -138,11 +138,8 @@ DevpressGenerator.prototype.LatestWordpress = function LatestWordpress() {
 
 DevpressGenerator.prototype.removeThemes= function removeThemes() {
 
-    if( this.installDevpressTheme ){
-        this.log.writeln('\n*******************************************\n** Deleting the default Wordpress themes **\n*******************************************');
-
-        shell.rm('-rf', './wp-content/themes/*');
-    }
+    this.log.writeln('\n*******************************************\n** Deleting the default Wordpress themes **\n*******************************************');
+    shell.rm('-rf', './wp-content/themes/*');
 
 };
 
