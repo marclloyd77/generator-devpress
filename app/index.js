@@ -7,7 +7,7 @@
 //5) Download / install a third party theme theme and rename as specified
 //6) Download Advanced Custom Fields and move to plugins folder if requested
 //7) Move wp-config file to root and update DB details. wp-config also includes environment detection
-//8) Move reset stylsheet to theme folder and update theme name
+//8) Update theme name in stylesheet (If no theme name is entered, the site name will be used)
 //9) Set current theme in Database
 
 var util = require('util'),
@@ -177,9 +177,9 @@ DevpressGenerator.prototype.updateWpConfig = function updateWpConfig() {
 
 //move css template and update theme name
 DevpressGenerator.prototype.moveCss = function moveCss() {
-    shell.rm('-rf', './wp-content/themes/' + this.themeName + '/style.css');
     this.log.writeln('\n************************************\n** Adding theme name to style.css **\n************************************');
-    this.copy('_style.css', 'wp-content/themes/' + this.themeName + '/style.css');
+    shell.exec("sed -i -e 's/.*Theme Name.*/Theme Name: " + this.themeName + "/' ./wp-content/themes/" + this.themeName + "/style.css")
+    shell.exec("rm -f -r ./wp-content/themes/" + this.themeName + "/style.css-e")
 };
 
 //Create database

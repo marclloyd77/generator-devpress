@@ -10,10 +10,10 @@ This generator will:
 * Create Database
 * Download and unzip latest Wordpress version into root
 * Delete preinstalled themes if adding a third part theme
-* Download / install a third party theme theme and rename as specified
+* Download / install a third party theme and rename as specified
 * Download Advanced Custom Fields and move to plugins folder if requested
 * Move wp-config file to root and update DB details. wp-config also includes environment detection
-* Move reset stylesheet to theme folder and update theme name
+* Update theme name in stylesheet
 * Set current theme in Database
 
 ## Getting Started
