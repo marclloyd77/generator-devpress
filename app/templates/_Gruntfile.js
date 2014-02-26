@@ -8,8 +8,7 @@ module.exports = function(grunt) {
         copy: {
             main: {
                 files: [
-
-                    // includes files within path
+                    dot: true,
                     {src: ['./**',
                         '!wp-content/themes/<%= themeName %>/css/**',
                         '!wp-content/themes/<%= themeName %>/js/**',
@@ -17,7 +16,7 @@ module.exports = function(grunt) {
                         '!./Gruntfile.js',
                         '!./npm-debug.log',
                         '!./package.json',
-                        '!dist/**'
+                        '!./dist/**'
                     ], dest: 'dist/'},
 
 
