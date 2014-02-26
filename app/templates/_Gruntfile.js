@@ -8,8 +8,9 @@ module.exports = function(grunt) {
         copy: {
             main: {
                 files: [
-                    dot: true,
-                    {src: ['./**',
+                    {
+                        dot: true,
+                        src: ['./**',
                         '!wp-content/themes/<%= themeName %>/css/**',
                         '!wp-content/themes/<%= themeName %>/js/**',
                         '!./node_modules/**',
