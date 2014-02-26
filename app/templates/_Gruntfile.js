@@ -9,7 +9,6 @@ module.exports = function(grunt) {
             main: {
                 files: [
                     {
-                        dot: true,
                         src: ['./**',
                         '!wp-content/themes/<%= themeName %>/css/**',
                         '!wp-content/themes/<%= themeName %>/js/**',
@@ -17,7 +16,8 @@ module.exports = function(grunt) {
                         '!./Gruntfile.js',
                         '!./npm-debug.log',
                         '!./package.json',
-                        '!./dist/**'
+                        '!./dist/**',
+                        './.htaccess',
                     ], dest: 'dist/'},
 
 
