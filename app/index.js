@@ -82,6 +82,11 @@ DevpressGenerator.prototype.askFor = function askFor() {
             message: 'Would you like to install the Advanced Custom Fields plugin?'
         },
         {
+            type: 'confirm',
+            name: 'installYoast',
+            message: 'Would you like to install the Yoast SEO plugin?'
+        },
+        {
             type: 'input',
             name: 'dbName',
             message: 'Database Name'
@@ -107,6 +112,7 @@ DevpressGenerator.prototype.askFor = function askFor() {
         this.adminPassword = props.adminPassword;
         this.adminEmail = props.adminEmail;
         this.installAcf = props.installAcf;
+        this.installYoast = props.installYoast;
 
 
         this.installDevpressTheme = props.installDevpressTheme;
@@ -164,8 +170,18 @@ DevpressGenerator.prototype.acfWordpress = function acfWordpress() {
     if( this.installAcf ){
         var cb   = this.async();
 
-        this.log.writeln('\n************************************************************************************\n** Downloading the latest advanced custom fields and add it to the plugins folder **\n************************************************************************************');
+        this.log.writeln('\n*****************************************************************************************************\n** Installing the latest Advanced Custom Fields **\n*****************************************************************************************************');
         this.tarball('https://github.com/elliotcondon/acf/archive/master.tar.gz', 'wp-content/plugins/advanced-custom-fields', cb);
+    }
+};
+
+DevpressGenerator.prototype.yoastWordpress = function yoastWordpress() {
+
+    if( this.installYoast){
+        var cb   = this.async();
+
+        this.log.writeln('\n*******************************************************************************************************************\n** Installing Yoast **\n*******************************************************************************************************************');
+        this.tarball('https://github.com/Yoast/wordpress-seo/archive/master.tar.gz', 'wp-content/plugins/wordpress-seo', cb);
     }
 };
 
