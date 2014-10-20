@@ -12,6 +12,7 @@ This generator will:
 * Download and install a third party theme and rename if specified (Theme name taken from site name at prompt)
 * Rename TwentyFourteen theme if no third party theme is specified
 * Download Advanced Custom Fields and move to plugins folder if requested
+* Download Yoast SEO plugin and move to plugins folder if requested
 * Update wp-config with DB details and environment detection
 * Update theme name in stylesheet
 * Run Wordpress install script

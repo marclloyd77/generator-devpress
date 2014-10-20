@@ -6,9 +6,10 @@
 //4) Delete preinstalled themes if adding a third part theme
 //5) Download / install a third party theme theme and rename as specified
 //6) Download Advanced Custom Fields and move to plugins folder if requested
-//7) Move wp-config file to root and update DB details. wp-config also includes environment detection
-//8) Update theme name in stylesheet (If no theme name is entered, the site name will be used)
-//9) Set current theme in Database
+//7) Download Yoast SEO plugin and move to plugins folder if requested
+//8) Move wp-config file to root and update DB details. wp-config also includes environment detection
+//9) Update theme name in stylesheet (If no theme name is entered, the site name will be used)
+//10) Set current theme in Database
 
 var util = require('util'),
     path = require('path'),
