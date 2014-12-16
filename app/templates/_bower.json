@@ -1,0 +1,10 @@
+{
+    "name": "<%= pkg.name %>",
+    "version": "0.2.3",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/marclloyd77/generator-devpress"
+    },
+    "dependencies": {
+    }
+}
