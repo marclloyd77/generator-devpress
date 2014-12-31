@@ -1,15 +1,16 @@
 'use strict';
 
-//1) Copy package.json and Gruntfile.js to root folder
-//2) Create Database
-//3) Download and unzip latest Wordpress version into root
-//4) Delete preinstalled themes if adding a third part theme
-//5) Download / install a third party theme theme and rename as specified
-//6) Download Advanced Custom Fields and move to plugins folder if requested
-//7) Download Yoast SEO plugin and move to plugins folder if requested
-//8) Move wp-config file to root and update DB details. wp-config also includes environment detection
-//9) Update theme name in stylesheet (If no theme name is entered, the site name will be used)
-//10) Set current theme in Database
+// 1) Setup Grunt (Copy package.json and Gruntfile.js to root folder)
+// 2) Create Wordpress database
+// 3) Download and unzip latest Wordpress version into root
+// 4) Download and install a third party theme if specified and rename it. (Theme name taken from site name at prompt)
+// 5) Rename TwentyFourteen theme if no third party theme is specified
+// 6) Download Advanced Custom Fields and move to plugins folder if requested
+// 7) Download Yoast SEO plugin and move to plugins folder if requested
+// 8) Update wp-config with DB details and environment detection
+// 9) Update theme name in stylesheet
+// 10) Run Wordpress install script
+// 11) Set current theme in Database
 
 var util = require('util'),
     path = require('path'),
@@ -132,6 +133,7 @@ DevpressGenerator.prototype.askFor = function askFor() {
 
 DevpressGenerator.prototype.gruntFiles = function gruntFiles() {
     this.copy('_package.json', 'package.json');
+    this.copy('_bower.json', 'bower.json');
     this.copy('_Gruntfile.js', 'Gruntfile.js');
 };
 

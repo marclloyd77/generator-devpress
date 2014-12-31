@@ -1,7 +1,7 @@
 <?php
 
 /** Environment Detection */
-if (preg_match('/client\.projectname\.((?!stage).*)\.mysite\.co\.uk/', $_SERVER['HTTP_HOST'])) {
+if (preg_match('/client\.projectname\.((?!staging).*)\.mysite\.co\.uk/', $_SERVER['HTTP_HOST'])) {
     /** Development Environment Detected */
     $dbhost = 'localhost';
     $dbname = '<%= dbName %>';
